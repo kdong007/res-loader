@@ -1,0 +1,9 @@
+{
+  "name": "res-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kdong007/res-loader.git",
+  "author": "Mars Dong <kdong007@hotmail.com>",
+  "license": "MIT",
+  "private": false
+}
