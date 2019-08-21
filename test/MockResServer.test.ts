@@ -5,11 +5,6 @@ test("create instance", () => {
     expect(server).not.toBeNull();
 });
 
-test("load some data", () => {
-    const server: MockResServer = new MockResServer(100);
-    expect(server.load("aa")).resolves.not.toBe(null);
-});
-
 test("load time", async () => {
     jest.useFakeTimers();
 
@@ -27,4 +22,16 @@ test("load time", async () => {
     await Promise.resolve();
     await Promise.resolve();
     expect(spyFn).toBeCalled();
+});
+
+test("savd and load", async () => {
+    jest.useRealTimers();
+    const server: MockResServer = new MockResServer(100);
+    const testKey = "ttt";
+    const testVal = "ttt123";
+
+    expect(server.load(testKey)).resolves.toBeNull();
+
+    await server.save(testKey, testVal);
+    expect(server.load(testKey)).resolves.toBe(testVal);
 });
