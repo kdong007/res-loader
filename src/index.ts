@@ -1,14 +1,14 @@
-interface ResLoaderConfig<DataType> {
+interface ResourceLoaderConfig<DataType> {
     fetchRemote: (string) => Promise<DataType>;
     fetchLocal: (string) => Promise<DataType>;
     saveLocal: (string, DataType) => Promise<any>;
 }
 
-export default class ResLoader<DataType> {
-    config: ResLoaderConfig<DataType>;
+export default class ResourceLoader<DataType> {
+    config: ResourceLoaderConfig<DataType>;
     actions: { [key: string]: Promise<DataType> } = {};
 
-    constructor(config: ResLoaderConfig<DataType>) {
+    constructor(config: ResourceLoaderConfig<DataType>) {
         this.config = config;
     }
 

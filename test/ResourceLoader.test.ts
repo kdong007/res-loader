@@ -1,5 +1,5 @@
 import MockResServer from "./MockResServer";
-import ResLoader from "../src";
+import ResourceLoader from "../src";
 
 test("simple load", () => {
     const testKey = "ttt";
@@ -7,7 +7,7 @@ test("simple load", () => {
 
     const remoteServer = new MockResServer(10, { [testKey]: testVal });
     const localServer = new MockResServer(10);
-    const loader = new ResLoader<string>({
+    const loader = new ResourceLoader<string>({
         fetchRemote: key => remoteServer.load(key),
         fetchLocal: key => localServer.load(key),
         saveLocal: (key, data) => localServer.save(key, data),
@@ -31,7 +31,7 @@ test("remote storage", async () => {
 
     const remoteServer = new MockResServer(10, { [testKey]: testVal });
     const localServer = new MockResServer(10);
-    const loader = new ResLoader<string>({
+    const loader = new ResourceLoader<string>({
         fetchRemote: key => {
             fetchRemoteSpy();
             return remoteServer.load(key);
@@ -73,7 +73,7 @@ test("local storage", async () => {
 
     const remoteServer = new MockResServer(10);
     const localServer = new MockResServer(10, { [testKey]: testVal });
-    const loader = new ResLoader<string>({
+    const loader = new ResourceLoader<string>({
         fetchRemote: key => {
             fetchRemoteSpy();
             return remoteServer.load(key);
