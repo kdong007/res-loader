@@ -1,4 +1,5 @@
 import MockResServer from "./MockResServer";
+import timeout from "timeout-as-promise";
 
 beforeEach(() => jest.useRealTimers());
 
@@ -8,21 +9,15 @@ test("create instance", () => {
 });
 
 test("load time", async () => {
-    jest.useFakeTimers();
-
     const server: MockResServer = new MockResServer(100);
     const spyFn = jest.fn();
     server.load("aa").then(spyFn);
     expect(spyFn).not.toBeCalled();
 
-    jest.advanceTimersByTime(99);
-    await Promise.resolve(); // fake timer + promise issue work around
-    await Promise.resolve();
+    await timeout(90);
     expect(spyFn).not.toBeCalled();
 
-    jest.advanceTimersByTime(1);
-    await Promise.resolve();
-    await Promise.resolve();
+    await timeout(10);
     expect(spyFn).toBeCalled();
 });
 
