@@ -1,5 +1,7 @@
 import MockResServer from "./MockResServer";
 
+beforeEach(() => jest.useRealTimers());
+
 test("create instance", () => {
     const server: MockResServer = new MockResServer(100);
     expect(server).not.toBeNull();
@@ -25,7 +27,6 @@ test("load time", async () => {
 });
 
 test("savd and load", async () => {
-    jest.useRealTimers();
     const server: MockResServer = new MockResServer(100);
     const testKey = "ttt";
     const testVal = "ttt123";

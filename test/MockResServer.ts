@@ -1,10 +1,15 @@
 import timeout from "timeout-as-promise";
+
+interface DataStorage {
+    [key: string]: any;
+}
 export default class MockResServer {
     loadTime: number;
-    data: { [key: string]: any } = {};
+    data: DataStorage;
 
-    constructor(loadTime: number) {
+    constructor(loadTime: number, initialData?: DataStorage) {
         this.loadTime = loadTime;
+        this.data = initialData || {};
     }
 
     async load(key: string): Promise<any> {
