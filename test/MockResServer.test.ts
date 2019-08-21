@@ -7,7 +7,7 @@ test("create instance", () => {
 
 test("load some data", () => {
     const server: MockResServer = new MockResServer(100);
-    expect(server.load(20)).resolves.not.toBe(null);
+    expect(server.load("aa")).resolves.not.toBe(null);
 });
 
 test("load time", async () => {
@@ -15,7 +15,7 @@ test("load time", async () => {
 
     const server: MockResServer = new MockResServer(100);
     const spyFn = jest.fn();
-    server.load(20).then(spyFn);
+    server.load("aa").then(spyFn);
     expect(spyFn).not.toBeCalled();
 
     jest.advanceTimersByTime(99);
