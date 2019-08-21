@@ -1,6 +1,6 @@
 {
     "name": "resouce-loader",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "dist/index.js",
     "repository": "git@github.com:kdong007/resouce-loader.git",
     "homepage": "https://github.com/kdong007/resource-loader",
